@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <title>CS430</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+	<script>
+		
+		var itemArray=[];
+		
+		function init(){
+			document.getElementById("tablerows").innerHTML="";
+			if(localStorage.studentsRecord){
+				itemArray=JSON.parse(localStorage.studentsRecord);
+				for(var i=0; i<itemArray.length; i++){
+					prepareTableCell(i,itemArray[i].item, itemArray[i].quantity);
+				}
+			}
+		}
+		
+		function onAddPressed(){
+			var myItem = document.getElementById("item").value;
+			var myQnty = document.getElementById("quantity").value;
+			
+			//object array
+			var itemObjt={item:myItem, quantity:myQnty};
+			itemArray.push(itemObjt);
+			//convert javascript array to json string format
+			localStorage.studentsRecord = JSON.stringify(itemArray);
+			
+			//call the function
+			init();
+			
+			//clear fields
+			document.getElementById("item").value="";
+			document.getElementById("quantity").value="";
+		}
+		
+		function prepareTableCell(index,myItem, myQnty){
+			var table = document.getElementById("tablerows");
+			var row= table.insertRow();
+			var itemCell = row.insertCell(0);
+			var quantityCell = row.insertCell(1);
+			var actionCell = row.insertCell(2);
+			
+			itemCell.innerHTML =myItem;
+			quantityCell.innerHTML =myQnty;
+			actionCell.innerHTML= '<button onclick="deleteTableRow('+index+')">Remove</button>';
+		}
+		
+		function deleteTableRow(index){
+			/*
+			var table = document.getElementById("addtable");
+			table.deleteRow(index + 1);
+			*/
+			itemArray.splice(index,1);
+			localStorage.studentsRecord = JSON.stringify(itemArray);
+			init();
+		}
+	</script>
+	</head>
+<body onload="init()">
+	<!--content-->
+	<div class ="container">
+		<header class="headerbar top"><h1>Hilo Comparative Shopping List</h1></header>
+		<aside class="leftbar">
+			<div>
+				<fieldset>
+					<label for="item">Item</label>
+					<input type="text" placeholder="Enter an item" id="item">
+				</fieldset>
+				<fieldset>
+					<label for="qantity">Quantity</label>
+					<input type="number" placeholder="0" min="1" max="100" id="quantity">
+				</fieldset>
+				<fieldset>
+					<label for="submit">&nbsp;</label>
+					<button id="submit" onclick="onAddPressed()"> Add</button>
+				</fieldset>
+			</div>	
+		</aside>
+		<aside class="rightbar">
+			<table id="addtable">
+				<thead>
+					<tr>
+						<th>Item</th>
+						<th>Quantity</th>
+						<th>Action</th>
+					</tr>
+				<thead>
+				<tbody id="tablerows">
+				</tbody>				
+			</table>
+			
+			<div id="cost">
+				<form action="/action_page.php" method="get" class="form1">
+					<label for="submit" ></label>
+					<button type="submit" value="Submit" id="check">Check Cost</button>
+				</form>
+				<form action="/action_page.php" method="get" class="form2">
+					<label for="reset"></label>
+					<button type="reset" value="Reset" id="allReset">Reset</button>
+				</form>
+			</div>
+		</aside>
+		<footer class="headerbar bottom"></footer>
+	</div>
+	
+</body>
+</html>

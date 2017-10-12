@@ -1,0 +1,98 @@
+body{
+	margin: 0;
+	background-image: url("background.jpg");
+}
+header, footer,aside{
+	display: block;
+}
+.container{
+	width: 1000px;
+	margin: 0 auto;
+}
+.headerbar{
+	width: 1000px;
+	float: left;
+}
+.headerbar.top{
+	background: #003333;
+	min-height: 100px;
+}
+.headerbar.bottom{
+	background: #333300;
+	min-height: 60px;
+}
+.leftbar{
+	width: 500px;
+	background: #009999;
+	min-height: 600px;
+	float: left;
+}
+.rightbar{
+	width: 500px;
+	background: #ccccff;
+	min-height: 600px;
+	float: left;
+}
+#item{
+	padding-left: 5px;
+	padding-right: 200px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+#quantity{
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+#submit{
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	float: right;
+	background: green;
+	border-size: 1px;
+}
+#check{
+	background: green;
+}
+#allReset{
+	background: gray;
+}
+.form1{
+	padding-top: 15px;
+	padding-right: 100px;
+	float: right;
+}
+.form2{
+	padding-top: 15px;
+	padding-right: 100px;
+	float: right;
+}
+h1{
+	color: white;
+	text-align: center;
+}
+input{
+	width: 100px;	
+}
+button{
+	font-size: 14px;
+	padding: 5px;
+	border-radius: 2px;
+	background: #ff0033;
+	color: #ffffff;
+	width: 100px;
+}
+table{
+	width:400px;
+	border-collapse: collapse;
+}
+th,td{
+	border: 1px solid black;
+	padding: 10px;
+}
+th{
+	background: orange;
+}
